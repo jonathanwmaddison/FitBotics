@@ -23,11 +23,11 @@ exports.handler = async (event, context) => {
 
 
 
-console.log(JSON.stringify(response))
+console.log(JSON.stringify(response.choices[0]))
     if (response.choices && response.choices.length > 0) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ response: response.choices[0].text.trim() }),
+        body: response.choices[0].text.trim()
       };
     }
 
