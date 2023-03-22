@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     const {data}= await openai.createCompletion(
 
       {
-        "model": "Ada",
+        "model": "ada",
         prompt,
         max_tokens: 500,
     n: 1,
