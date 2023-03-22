@@ -11,14 +11,14 @@ exports.handler = async (event, context) => {
   }
 
   const data = JSON.parse(event.body);
-  const message = data.message;
+  const message = data.prompt
 
   try {
     const response = await openai.createChatCompletion(
 
       {
         "model": "gpt-4",
-        "messages": [{"role": "user", "content": message}]
+        "messages": [{"role": "user", "content": prompt}]
       })
 
 
