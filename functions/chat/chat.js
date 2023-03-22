@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
       {
         "model": "text-davinci-002",
         prompt,
-        max_tokens: 250,
+        max_tokens: 500,
     n: 1,
     stop: null,
       })
