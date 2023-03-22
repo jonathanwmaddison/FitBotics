@@ -48,7 +48,7 @@ Please return only the JSON object as the response.`;
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
-        const jsonResponse = JSON.parse(response.data.choices[0].text);
+        const jsonResponse = JSON.parse(response.data);
         onWorkoutPlanGenerated(jsonResponse);
       } catch (error) {
         console.error('Error fetching workout plan:', error);
