@@ -14,11 +14,11 @@ exports.handler = async (event, context) => {
   const prompt = data.prompt
 
   try {
-    const response = await openai.createChatCompletion(
+    const response = await openai.createCompletion(
 
       {
         "model": "babbage",
-        "messages": [{"role": "user", "content": prompt}]
+        prompt
       })
 
 
