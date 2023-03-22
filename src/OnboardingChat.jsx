@@ -48,9 +48,8 @@ Please return only the JSON object as the response and reduce whitespace. respon
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
-        console.log(response)
-        const jsonResponse = JSON.parse(response.data.response);
-        onWorkoutPlanGenerated(jsonResponse);
+        const jsonResponse = response.data.response.split("workouts:")[1]
+        onWorkoutPlanGenerated({ workouts: jsonResponse } );
       } catch (error) {
         console.error('Error fetching workout plan:', error);
       }

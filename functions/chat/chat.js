@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     const {data}= await openai.createCompletion(
 
       {
-        "model": "text-davinci-002",
+        "model": "Ada",
         prompt,
         max_tokens: 500,
     n: 1,
