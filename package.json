@@ -19,7 +19,8 @@
     "@mui/material": "^5.11.13",
     "@mui/system": "^5.11.13",
     "@netlify/functions": "^1.4.0",
-    "firebase": "^9.18.0"
+    "firebase": "^9.18.0",
+    "openai": "^3.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
