@@ -17,8 +17,8 @@ exports.handler = async (event, context) => {
     const response = await openai.createChatCompletion(
 
       {
-        "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": "introduce yourself!"}]
+        "model": "gpt-4",
+        "messages": [{"role": "user", "content": message}]
       })
 
 
