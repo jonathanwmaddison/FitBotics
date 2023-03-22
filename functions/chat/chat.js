@@ -31,7 +31,7 @@ console.log(data)
     if (data.choices && data.choices.length > 0) {
       return {
         statusCode: 200,
-        body: data.choices[0].text.trim()
+        body: data.choices[0].message.trim()
       };
     }
 
