@@ -17,8 +17,11 @@ exports.handler = async (event, context) => {
     const {data}= await openai.createCompletion(
 
       {
-        "model": "babbage",
-        prompt
+        "model": "gpt-3.5-turbo",
+        prompt,
+        max_tokens: 250,
+    n: 1,
+    stop: null,
       })
 
 
