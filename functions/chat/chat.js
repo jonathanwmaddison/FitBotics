@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
 
       {
         "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": "Hello!"}]
+        "messages": [{"role": "user", "content": "introduce yourself!"}]
       })
 
 
