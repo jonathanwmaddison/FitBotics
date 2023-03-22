@@ -7,6 +7,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
   const [userData, setUserData] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
+  const userQueries = ["goals", "age", "fitness level"]
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -57,14 +58,14 @@ Please return only the JSON object as the response.`;
 
   return (
     <div>
-      <TextField
-        label="Enter your info"
+      <TextField 
+        label={userQueries[userData.length] || 'loading plan'}
         variant="outlined"
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
+      <Button disabled={!!userData.length > 2} variant="contained" color="primary" onClick={handleSubmit}>
         Submit
       </Button>
     </div>
