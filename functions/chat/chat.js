@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
   const prompt = data.prompt
 
   try {
-    const { data }= await openai.createChatCompletion(
+    const { data }= await openai.createCompletion(
       {
         "model": "code-davinci-002",
         "prompt": prompt,
