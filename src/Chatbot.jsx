@@ -14,7 +14,7 @@ const Chatbot = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('/.netlify/functions/generate-response', {
+      const response = await fetch('/.netlify/functions/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
