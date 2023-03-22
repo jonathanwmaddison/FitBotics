@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
   const prompt = data.prompt
 
   try {
-    const response = await openai.createCompletion(
+    const {data}= await openai.createCompletion(
 
       {
         "model": "babbage",
@@ -23,11 +23,11 @@ exports.handler = async (event, context) => {
 
 
 
-console.log(response)
-    if (response.choices && response.choices.length > 0) {
+console.log(data)
+    if (data.choices && data.choices.length > 0) {
       return {
         statusCode: 200,
-        body: response.choices[0].text.trim()
+        body: data.choices[0].text.trim()
       };
     }
 
