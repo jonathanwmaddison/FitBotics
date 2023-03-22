@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
   }
 
   const data = JSON.parse(event.body);
-  const message = data.prompt
+  const prompt = data.prompt
 
   try {
     const response = await openai.createChatCompletion(
