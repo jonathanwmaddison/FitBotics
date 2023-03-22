@@ -1,11 +1,8 @@
 // WorkoutTable.js
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { styled } from '@emotion/react';
 
-const CustomTable = styled(Table)`
-  // Your table styles
-`;
+const CustomTable = Table
 
 function WorkoutTable({ workoutPlan }) {
   const renderExerciseRows = (exercises) => {
