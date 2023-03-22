@@ -24,7 +24,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     setInputValue('');
 
     if (userData.length === 2) {
-      const prompt = `return a json object with the properties: 
+      const prompt = `A json object with the properties: 
     { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
         ...
       ],
@@ -33,7 +33,8 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     ...
      ]
    }
-  json object should detail a 2 day workout plan for somone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+  
+   The json object should detail a 2 day workout plan for somone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
