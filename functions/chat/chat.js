@@ -14,14 +14,15 @@ exports.handler = async (event, context) => {
   const prompt = data.prompt
 
   try {
-    const {data}= await openai.createCompletion(
-
+    const { data }= await openai.createChatCompletion(
       {
-        "model": "ada",
-        prompt,
+        "model": "gpt-3.5-turbo",
+        messages: [
+          {"role": "system", "content": "You are a helpful assistant that helps create and manage workout plans. You produced structured results like json for a web app."},
+          {"role": "user", "content": prompt}
+        ],
         max_tokens: 500,
-    n: 1,
-    stop: null,
+        n: 1,
       })
 
 
