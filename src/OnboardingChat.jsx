@@ -25,17 +25,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
 
     if (userData.length === 2) {
       const prompt = `Generate a personalized workout plan for a person with the following goals: "${userData[0]}", age: ${userData[1]}, and fitness level: "${inputValue}". Provide the plan as JSON structured data for 2 days, including a dynamic list of exercises tailored to the user's goals and fitness level. The JSON structure should be:
-
-{
-  "workouts": [
-    {
-      "week": "integer (1-5)",
-      "day": "integer (1-7)",
-      "exercises": [
-        {
-          "name": "string (exercise name)",
-          "reps": "integer (number of repetitions)"
-        },
+    { "workouts": [{"week": "integer (1-5)", "day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
         ...
       ],
       "description": "string (workout description)"
@@ -44,7 +34,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
   ]
 }
 
-Please return only the JSON object as the response and reduce whitespace. response should only be the json. dont add object to beginning of response. first character should be {`;
+Please return only the JSON object as the response and reduce whitespace.`;
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
