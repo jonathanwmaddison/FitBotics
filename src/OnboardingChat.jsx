@@ -48,6 +48,7 @@ Please return only the JSON object as the response.`;
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
+        console.log(response)
         const jsonResponse = JSON.parse(response.data.response);
         onWorkoutPlanGenerated(jsonResponse);
       } catch (error) {
