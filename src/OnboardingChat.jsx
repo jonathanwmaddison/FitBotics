@@ -37,7 +37,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
    The json object should detail a 2 day workout plan for somone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
 
       try {
-        const response = await axios.post('/.netlify/functions/chat', { prompt });
+        const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat", { prompt });
         const jsonResponse = JSON.parse(response.data.response.split("workouts:")[1])
         console.log(jsonResponse)
         onWorkoutPlanGenerated({ workouts: jsonResponse } );
