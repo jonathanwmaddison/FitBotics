@@ -44,7 +44,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
   ]
 }
 
-Please return only the JSON object as the response and reduce whitespace. response should only be the json`;
+Please return only the JSON object as the response and reduce whitespace. response should only be the json. dont add object to beginning of response. first character should be {`;
 
       try {
         const response = await axios.post('/.netlify/functions/chat', { prompt });
