@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import OnboardingChat from './OnboardingChat';
 import WorkoutTable from './WorkoutTable';
+import useAuth from './useAuth';
 
 const theme = createTheme({
   // Your theme customizations
