@@ -27,8 +27,11 @@ function App() {
       <Container maxWidth="lg">
         <h1>Workout Tracker</h1>
         <AuthButtons signInWithGoogle={signInWithGoogle} signOut={signOutUser} isSignedIn={!!user} />   
-        <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} />
+      {!!user && <> 
+       <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} />
         <WorkoutTable workoutPlan={workoutPlan} />
+        </>
+      }
       </Container>
     </ThemeProvider>
   );
