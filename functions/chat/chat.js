@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
   const message = data.message;
 
   try {
-    const response = await openai.createCompletion(
+    const response = await openai.createChatCompletion(
 
       {
         "model": "gpt-3.5-turbo",
