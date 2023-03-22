@@ -14,14 +14,15 @@ exports.handler = async (event, context) => {
   const message = data.message;
 
   try {
-    const response = await openai.createCompletion({
-      engine: 'davinci-codex',
-      prompt: `I am a workout chatbot. ${message}`,
-      max_tokens: 150,
-      n: 1,
-      stop: null,
-      temperature: 0.5,
-    });
+    const response = await openai.createCompletion(
+
+      {
+        "model": "gpt-3.5-turbo",
+        "messages": [{"role": "user", "content": "Hello!"}]
+      })
+
+
+
 
     if (response.choices && response.choices.length > 0) {
       return {
