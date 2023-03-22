@@ -16,11 +16,8 @@ exports.handler = async (event, context) => {
   try {
     const { data }= await openai.createChatCompletion(
       {
-        "model": "gpt-3.5-turbo",
-        messages: [
-          {"role": "system", "content": "You are a helpful assistant that helps create and manage workout plans. You produced structured results like json for a web app."},
-          {"role": "user", "content": prompt}
-        ],
+        "model": "code-davinci-002",
+        "prompt": prompt,
         max_tokens: 500,
         n: 1,
       })
@@ -31,7 +28,7 @@ console.log(data)
     if (data.choices && data.choices.length > 0) {
       return {
         statusCode: 200,
-        body: data.choices[0].message.trim()
+        body: data.choices[0].text.trim()
       };
     }
 
