@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     const {data}= await openai.createCompletion(
 
       {
-        "model": "gpt-3.5-turbo",
+        "model": "text-davinci-002",
         prompt,
         max_tokens: 250,
     n: 1,
