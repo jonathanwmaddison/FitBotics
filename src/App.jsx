@@ -1,8 +1,7 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { Container, Button } from '@mui/material';
+import { Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@emotion/react';
 import OnboardingChat from './OnboardingChat';
 import WorkoutTable from './WorkoutTable';
 
