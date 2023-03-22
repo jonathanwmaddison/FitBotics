@@ -24,7 +24,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     setInputValue('');
 
     if (userData.length === 2) {
-      const prompt = `Generate a personalized workout plan for a person with the following goals: "${userData[0]}", age: ${userData[1]}, and fitness level: "${inputValue}". Provide the plan as JSON structured data for 1 week, including a dynamic list of exercises tailored to the user's goals and fitness level. The JSON structure should be:
+      const prompt = `Generate a personalized workout plan for a person with the following goals: "${userData[0]}", age: ${userData[1]}, and fitness level: "${inputValue}". Provide the plan as JSON structured data for 2 days, including a dynamic list of exercises tailored to the user's goals and fitness level. The JSON structure should be:
 
 {
   "workouts": [
