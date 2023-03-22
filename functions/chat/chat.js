@@ -1,9 +1,9 @@
 // netlify-functions/generate-response.js
-const { createClient } = require('openai');
-
-const openai = createClient({
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+const openai = new OpenAIApi(configuration);
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
   const message = data.message;
 
   try {
-    const response = await openai.Completion.create({
+    const response = await openai.createCompletion({
       engine: 'davinci-codex',
       prompt: `I am a workout chatbot. ${message}`,
       max_tokens: 150,
