@@ -23,15 +23,17 @@ exports.chat = functions.https.onRequest( async (request, response) => {
   if (request.method === "OPTIONS") {
     // Send response to OPTIONS requests
     response.set("Access-Control-Allow-Methods", "POST");
-    response.set("Access-Control-Allow-Headers", "Content-Type");
+    // response.set("Access-Control-Allow-Headers", "Content-Type");
     response.set("Access-Control-Max-Age", "3600");
     response.status(204).send("");
   }
 
-  if (request.httpMethod !== "POST") {
-    return response.send({statusCode: 405, body: "Method Not Allowed"});
-  }
-  const {prompt} = JSON.parse(request.body);
+  // if (request.httpMethod !== "POST") {
+  //   return response.send({statusCode: 405, body: "Method Not Allowed"});
+  // }
+  functions.logger.info(request.body, {structuredData: true});
+
+  const prompt = request.body;
   try {
     const {data} = await openai.createCompletion(
         {
