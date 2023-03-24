@@ -24,25 +24,25 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     setInputValue('');
 
     if (userData.length === 2) {
-  //     const prompt = `A json object with the properties: 
-  //   { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
-  //       ...
-  //     ],
-  //     "description": "string (workout description)"
-  //   },
-  //   ...
-  //    ]
-  //  }
+      const prompt = `A json object with the properties: 
+    { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
+        ...
+      ],
+      "description": "string (workout description)"
+    },
+    ...
+     ]
+   }
   
-  //  The json object should detail a 2 day workout plan for somone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
-const prompt = `return me only some sample data in this format: { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
-      ...
-    ],
-    "description": "string (workout description)"
-  },
-  ...
-   ]
- }`
+   The json object should detail a 2 day workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+// const prompt = `return me only some sample data in this format: { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
+//       ...
+//     ],
+//     "description": "string (workout description)"
+//   },
+//   ...
+//    ]
+//  }`
      try {
         const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat",  { prompt });
         console.log(response)
