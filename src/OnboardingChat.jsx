@@ -45,7 +45,8 @@ const prompt = `return me only some sample data in this format: { "workouts": [{
  }`
      try {
         const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat",  { prompt });
-        const jsonResponse = JSON.parse(response.data.response.split("workouts:")[1])
+        console.log(response)
+        const jsonResponse = JSON.parse(response.data.response.text.split("workouts:")[1])
         console.log(jsonResponse)
         onWorkoutPlanGenerated({ workouts: jsonResponse } );
       } catch (error) {
