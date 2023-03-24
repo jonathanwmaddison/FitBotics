@@ -46,9 +46,9 @@ const prompt = `return me only some sample data in this format: { "workouts": [{
      try {
         const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat",  { prompt });
         console.log(response)
-        const jsonResponse = JSON.parse(response.data.text.split("workouts:")[1])
+        const jsonResponse = JSON.parse(response.data.text)
         console.log(jsonResponse)
-        onWorkoutPlanGenerated({ workouts: jsonResponse } );
+        onWorkoutPlanGenerated(jsonResponse);
       } catch (error) {
         console.error('Error fetching workout plan:', error);
       }
