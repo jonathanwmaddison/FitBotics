@@ -35,18 +35,19 @@ exports.chat = functions.https.onRequest( async (request, response) => {
 
   const prompt = request.body;
   try {
-    const {data} = await openai.createCompletion(
+    const {data} = await openai.createChatCompletion(
         {
-          "model": "code-davinci-002",
-          "prompt": prompt,
+          "model": "gpt-3.5-turbo",
+          "messages": [
+            {"role": "user", "content": prompt },
+          ],
           "max_tokens": 500,
-          "n": 1,
         });
     functions.logger.info(data, {structuredData: true});
     if (data.choices && data.choices.length > 0) {
       return response.send({
         statusCode: 200,
-        body: data.choices[0].text.trim(),
+        body: data.choices[0].messsage.content.trim(),
       });
     }
   } catch (error) {
@@ -58,6 +59,6 @@ exports.chat = functions.https.onRequest( async (request, response) => {
   } finally {
     response.send({
       statusCode: 500,
-      body: "An error occurred while generating a response."});
+      body: "The prompt did not have a response"});
   }
 });
