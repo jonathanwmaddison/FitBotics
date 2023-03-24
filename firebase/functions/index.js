@@ -33,7 +33,7 @@ exports.chat = functions.https.onRequest( async (request, response) => {
   // }
   functions.logger.info(request.body, {structuredData: true});
 
-  const prompt = request.body;
+  const { prompt } = request.body;
   try {
     const {data} = await openai.createChatCompletion(
         {
