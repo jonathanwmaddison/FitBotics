@@ -9,6 +9,7 @@ import useSavedPlan from './hooks/useSavedPlan'
 function App() {
   const [workoutPlan, setWorkoutPlan] = useState(null);
   const { savedPlan } = useSavedPlan();
+
   const onWorkoutPlanGenerated = (plan) => {
     setWorkoutPlan(plan);
   };
@@ -20,9 +21,9 @@ function App() {
       <h1 className="text-4xl font-bold text-center py-6">Workout Tracker</h1>
       <AuthButtons signInWithGoogle={signInWithGoogle} signOut={signOutUser} isSignedIn={!!user} />
       {!!user && <>
-        {!workoutPlan && !savedPlan ? <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} /> :
-          <WorkoutTable workoutPlan={workoutPlan} />
-        }
+        {workoutPlan == null && savedPlan == null && <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} />}
+        <WorkoutTable workoutPlan={workoutPlan || savedPlan} />
+    
       </>
       }
     </div>
