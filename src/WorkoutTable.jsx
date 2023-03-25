@@ -1,15 +1,11 @@
-// WorkoutTable.js
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-
-const CustomTable = Table
 
 function WorkoutTable({ workoutPlan }) {
   const renderExerciseRows = (exercises) => {
     return exercises.map((exercise, index) => (
       <React.Fragment key={index}>
-        <TableCell>{exercise.name}</TableCell>
-        <TableCell>{exercise.reps}</TableCell>
+        <td>{exercise.name}</td>
+        <td>{exercise.reps}</td>
       </React.Fragment>
     ));
   };
@@ -20,30 +16,30 @@ function WorkoutTable({ workoutPlan }) {
     }
 
     return workoutPlan.workouts.map((workout, index) => (
-      <TableRow key={index}>
-        <TableCell>{workout.week}</TableCell>
-        <TableCell>{workout.day}</TableCell>
+      <tr key={index}>
+        <td>{workout.week}</td>
+        <td>{workout.day}</td>
         {renderExerciseRows(workout.exercises)}
-        <TableCell>{workout.description}</TableCell>
-      </TableRow>
+        <td>{workout.description}</td>
+      </tr>
     ));
   };
 
   return (
-    <TableContainer component={Paper}>
-      <CustomTable>
-        <TableHead>
-          <TableRow>
-            <TableCell>Week</TableCell>
-            <TableCell>Day</TableCell>
-            <TableCell>Exercise</TableCell>
-            <TableCell>Reps</TableCell>
-            <TableCell>Description</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{renderWorkoutPlanRows()}</TableBody>
-      </CustomTable>
-    </TableContainer>
+    <div className="overflow-x-auto">
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Day</th>
+            <th>Exercise</th>
+            <th>Reps</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>{renderWorkoutPlanRows()}</tbody>
+      </table>
+    </div>
   );
 }
 
