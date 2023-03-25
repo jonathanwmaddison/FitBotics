@@ -30,6 +30,7 @@ const useSavedPlan = () => {
             }
             setLoading(false);
         }, (err) => {
+            console.log(err)
             setError(err.message);
             setLoading(false);
         });
