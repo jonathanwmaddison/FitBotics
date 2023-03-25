@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import firebase from './firebase';
+import firebase from '../firebase';
 
 const useSavedPlan = () => {
  const { user } = useAuth();
