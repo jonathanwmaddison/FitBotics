@@ -8,12 +8,11 @@ import useSavedPlan from './hooks/useSavedPlan'
 
 function App() {
   const [workoutPlan, setWorkoutPlan] = useState(null);
-  const { savedPlan } = useSavedPlan();
+  const { workoutPlan: savedPlan } = useSavedPlan();
 
   const onWorkoutPlanGenerated = (plan) => {
     setWorkoutPlan(plan);
   };
-
   const { user, signInWithGoogle, signOutUser } = useAuth();
 
   return (

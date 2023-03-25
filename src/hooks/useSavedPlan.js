@@ -22,8 +22,8 @@ const useSavedPlan = () => {
         const unsubscribe = onSnapshot(workoutPlansRef, (snapshot) => {
             const plans = [];
             snapshot.forEach((doc) => {
-                console.log(doc)
-                plans.push(doc.data().workoutPlan);
+                plans.push(doc.data().data);
+
             });
             if (plans.length > 0) {
                 setWorkoutPlan(plans[0]); // Only return the first plan
@@ -45,7 +45,7 @@ const useSavedPlan = () => {
         const unsubscribe = getWorkoutPlan();
         return unsubscribe;
     }, [user, getWorkoutPlan]);
-
+    console.log(workoutPlan)
     return { workoutPlan, loading, error };
 };
 
