@@ -14,6 +14,7 @@ const { user } = useAuth()
     try {
 
       if (user) {
+        const db = getFirestore()
         await addDoc(collection(db, 'workoutPlans'), {
           createdAt: new Date().toISOString(),
           userId: user.uid,
