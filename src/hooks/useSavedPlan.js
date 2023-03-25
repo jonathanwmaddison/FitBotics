@@ -1,25 +1,27 @@
-import { useEffect, useState } from 'react'
-import firebase from '../firebase';
+import { useCallback, useEffect, useState } from 'react'
+import { getFirestore, collection, addDoc, getDoc } from 'firebase/firestore';
+
 import useAuth from '../useAuth';
 const useSavedPlan = () => {
- const { user } = useAuth();
- const [workoutPlan, setWorkoutPlan] = useState([])
- useEffect(() => {
-    if (!user) return;
+    const { user } = useAuth();
+    const [workoutPlan, setWorkoutPlan] = useState([])
 
-    const workoutPlanRef = firebase
-      .firestore()
-      .collection('workoutPlans')
-      .doc(user.uid);
+    const getWorkoutPlan = useCallback(() => {
+        const workoutPlanRef = getDoc(collection('users', user.id, 'workoutPlans'))
+        const unsubscribe = workoutPlanRef.onSnapshot((doc) => {
+            if (doc.exists) {
+                setWorkoutPlan(doc.data().workoutPlan);
+            }
+        });
+        return () => unsubscribe();
+    }, [user])
 
-    const unsubscribe = workoutPlanRef.onSnapshot((doc) => {
-      if (doc.exists) {
-        setWorkoutPlan(doc.data().workoutPlan);
-      }
-    });
+    useEffect(() => {
+        if (!user) return;
 
-    return () => unsubscribe();
-  }, [user])
-  return [workoutPlan]
+        return getWorkoutPlan()
+    
+    }, [user])
+    return [workoutPlan]
 }
 export default useSavedPlan;

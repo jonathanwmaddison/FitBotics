@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 export const useSaveWorkoutPlan = () => {
