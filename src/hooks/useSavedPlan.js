@@ -21,6 +21,7 @@ const useSavedPlan = () => {
         const unsubscribe = onSnapshot(workoutPlansRef, (snapshot) => {
             const plans = [];
             snapshot.forEach((doc) => {
+                console.log(doc)
                 plans.push(doc.data().workoutPlan);
             });
             if (plans.length > 0) {
