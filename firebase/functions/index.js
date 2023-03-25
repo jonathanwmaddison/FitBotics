@@ -32,7 +32,7 @@ exports.chat = functions.https.onRequest((request, response) =>  corsHandler(req
           "model": "text-davinci-003",
           "temperature": .5,
           "prompt": prompt,
-          "max_tokens": 500,
+          "max_tokens": 2000,
         });
     functions.logger.info(data.choices, {structuredData: true});
     if (data.choices && data.choices.length > 0) {
