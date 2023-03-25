@@ -24,6 +24,7 @@ export const useSaveWorkoutPlan = () => {
         throw new Error('User not authenticated');
       }
     } catch (err) {
+        console.log(err)
       setError(err.message);
     } finally {
       setSaving(false);
