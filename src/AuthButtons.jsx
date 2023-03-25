@@ -1,24 +1,22 @@
 // AuthButtons.js
 import React from 'react';
-import { GoogleIcon } from '@mui/icons-material';
+import { FcGoogle } from 'react-icons/fc';
 
 const AuthButtons = ({ signInWithGoogle, signOut, isSignedIn }) => {
   return (
     <>
       <button
-        className={`btn btn-primary flex items-center space-x-2 ${
-          isSignedIn ? 'hidden' : 'inline-flex'
-        }`}
+        className="btn btn-primary btn-active"
         onClick={signInWithGoogle}
+        style={{ display: isSignedIn ? 'none' : 'inline-flex' }}
       >
-        <GoogleIcon />
-        <span>Sign in with Google</span>
+        <FcGoogle className="inline mr-2" />
+        Sign in with Google
       </button>
       <button
-        className={`btn btn-outline btn-primary ${
-          isSignedIn ? 'inline-flex' : 'hidden'
-        }`}
+        className="btn btn-outline btn-primary"
         onClick={signOut}
+        style={{ display: isSignedIn ? 'inline-flex' : 'none' }}
       >
         Sign out
       </button>
