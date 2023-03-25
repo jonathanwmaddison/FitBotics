@@ -8,7 +8,7 @@ import useSavedPlan from './hooks/useSavedPlan'
 
 function App() {
   const [workoutPlan, setWorkoutPlan] = useState(null);
-  const [savedPlan] = useSavedPlan();
+  const { savedPlan } = useSavedPlan();
   const onWorkoutPlanGenerated = (plan) => {
     setWorkoutPlan(plan);
   };
