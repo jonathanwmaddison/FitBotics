@@ -41,7 +41,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
      ]
    }
   
-   The json object should detail a 1 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+   The json object should detail a 1 day workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
 
      try {
         const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat",  { prompt });

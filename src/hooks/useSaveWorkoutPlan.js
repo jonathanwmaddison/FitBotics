@@ -16,8 +16,9 @@ export const useSaveWorkoutPlan = () => {
       const user = auth.currentUser;
 
       if (user) {
-        await addDoc(collection(db, 'users', user.uid, 'workoutPlans'), {
+        await addDoc(collection(db, 'workoutPlans'), {
           createdAt: new Date().toISOString(),
+          userId: user.uid,
           workoutPlan,
         });
       } else {
