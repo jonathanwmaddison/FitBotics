@@ -1,41 +1,31 @@
 // App.js
-import React, { useState, useEffect } from 'react';
-import { Container } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from 'react';
 import OnboardingChat from './OnboardingChat';
 import WorkoutTable from './WorkoutTable';
 import useAuth from './useAuth';
 import AuthButtons from './AuthButtons'
-
-const theme = createTheme({
-  // Your theme customizations
-});
+import useSavedPlan from './hooks/useSavedPlan'
 
 function App() {
   const [workoutPlan, setWorkoutPlan] = useState(null);
-
+  const [savedPlan] = useSavedPlan();
   const onWorkoutPlanGenerated = (plan) => {
     setWorkoutPlan(plan);
   };
 
-  // Replace your existing script with a useEffect hook
-  useEffect(() => {
-    // Your existing script code
-  }, []);
   const { user, signInWithGoogle, signOutUser } = useAuth();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container maxWidth="lg">
-        <h1>Workout Tracker</h1>
-        <AuthButtons signInWithGoogle={signInWithGoogle} signOut={signOutUser} isSignedIn={!!user} />   
-      {!!user && <> 
-       <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} />
-        <WorkoutTable workoutPlan={workoutPlan} />
-        </>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="text-4xl font-bold text-center py-6">Workout Tracker</h1>
+      <AuthButtons signInWithGoogle={signInWithGoogle} signOut={signOutUser} isSignedIn={!!user} />
+      {!!user && <>
+        {!workoutPlan && !savedPlan ? <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} /> :
+          <WorkoutTable workoutPlan={workoutPlan} />
+        }
+      </>
       }
-      </Container>
-    </ThemeProvider>
+    </div>
   );
 }
 
