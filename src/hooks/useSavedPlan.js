@@ -9,6 +9,7 @@ const useSavedPlan = () => {
     const { user } = useAuth()
 
     const getWorkoutPlan = useCallback(() => {
+        console.log('running')
         setLoading(true);
         setError(null);
 
