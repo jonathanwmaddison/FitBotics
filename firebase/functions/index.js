@@ -22,26 +22,14 @@ exports.chat = functions.https.onRequest((request, response) =>  corsHandler(req
 
 
 
-  // const { prompt } = request.body;
-  // functions.logger.info(prompt, {structuredData: true});
-const prompt = `return me only some sample data in this format: { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
-...
-],
-"description": "string (workout description)"
-},
-...
-]
-}`
-functions.logger.info(prompt, {structuredData: true});
+  const { prompt } = request.body;
+  functions.logger.info(prompt, {structuredData: true});
+
 
   try {
     const {data} = await openai.createCompletion(
         {
           "model": "text-davinci-003",
-          // "messages": [
-          //   {"role": "system", "content": "You are an assistant that helps create workout plans and can provide them in structured formats" },
-          //   {"role": "user", "content": prompt },
-          // ],
           "temperature": .5,
           "prompt": prompt,
           "max_tokens": 500,

@@ -28,13 +28,13 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
         ...
       ],
-      "description": "string (workout description)"
+      "description": "string (description for the day with tips)"
     },
     ...
      ]
    }
   
-   The json object should detail a 2 day workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+   The json object should detail a 5 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
 // const prompt = `return me only some sample data in this format: { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
 //       ...
 //     ],
