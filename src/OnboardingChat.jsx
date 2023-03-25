@@ -6,6 +6,7 @@ import { TextField, Button } from '@mui/material';
 function OnboardingChat({ onWorkoutPlanGenerated }) {
   const [userData, setUserData] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const { saveWorkoutPlan, saving, error } = useSaveWorkoutPlan();
 
   const userQueries = ["goals", "age", "fitness level"]
   const handleInputChange = (event) => {
@@ -42,6 +43,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
         const jsonResponse = JSON.parse(response.data.text)
         console.log(jsonResponse)
         onWorkoutPlanGenerated(jsonResponse);
+        saveWorkoutPlan(jsonResponse)
       } catch (error) {
         console.error('Error fetching workout plan:', error);
       }
