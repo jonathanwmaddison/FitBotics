@@ -13,12 +13,12 @@ const useSavedPlan = () => {
         setError(null);
 
         const db = getFirestore();
-        const workoutPlanRef = query(
+  
+        const workoutPlansRef = query(
             collection(db, 'workoutPlans'),
-            where('userId', '==', user.uid),
-            // You can add more filters here if needed
-        );
-        const unsubscribe = onSnapshot(workoutPlanRef, (snapshot) => {
+            where('createdBy', '==', user.uid),
+          );
+        const unsubscribe = onSnapshot(workoutPlansRef, (snapshot) => {
             const plans = [];
             snapshot.forEach((doc) => {
                 plans.push(doc.data().workoutPlan);
