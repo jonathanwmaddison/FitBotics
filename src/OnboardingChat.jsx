@@ -25,24 +25,17 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
 
     if (userData.length === 2) {
       const prompt = `A json object with the properties: 
-    { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
+    { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions - specify if a time quantity)" },
         ...
       ],
-      "description": "string (description for the day with tips)"
+      "description": "string (description for the day with tips. vary this description to the specific day. Don't repeat too much.)"
     },
     ...
      ]
    }
   
-   The json object should detail a 5 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
-// const prompt = `return me only some sample data in this format: { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "integer (number of repetitions)" },
-//       ...
-//     ],
-//     "description": "string (workout description)"
-//   },
-//   ...
-//    ]
-//  }`
+   The json object should detail a 1 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+
      try {
         const response = await axios.post("https://us-central1-fitbotics-230d2.cloudfunctions.net/chat",  { prompt });
         console.log(response)
