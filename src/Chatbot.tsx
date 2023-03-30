@@ -1,16 +1,16 @@
 // Chatbot.js
-import React, { useState } from 'react';
+import React, { useState, MouseEvent, ChangeEvent, FormEvent } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 
 const Chatbot = () => {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
 
-  const handleMessageChange = (event) => {
+  const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLElement>) => {
     event.preventDefault();
 
     try {
