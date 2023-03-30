@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getFirestore, collection, query, where, onSnapshot } from 'firebase/firestore';
+import { getFirestore, collection, query, where, onSnapshot, doc } from 'firebase/firestore';
 import useAuth from '../useAuth';
+
 
 const useSavedPlan = () => {
     const [workoutPlan, setWorkoutPlan] = useState(null);
@@ -14,19 +15,11 @@ const useSavedPlan = () => {
         setError(null);
 
         const db = getFirestore();
-  
-        const workoutPlansRef = query(
-            collection(db, 'workoutPlans'),
-            where('createdBy', '==', user.uid),
-          );
-        const unsubscribe = onSnapshot(workoutPlansRef, (snapshot) => {
-            const plans = [];
-            snapshot.forEach((doc) => {
-                plans.push(doc.data().data);
+        const workoutPlanRef = doc(db, 'workoutPlans', user.uid);
 
-            });
-            if (plans.length > 0) {
-                setWorkoutPlan(plans[0]); // Only return the first plan
+        const unsubscribe = onSnapshot(workoutPlanRef, (workoutPlanSnapshot) => {
+            if (workoutPlanSnapshot.exists()) {
+                setWorkoutPlan(workoutPlanSnapshot.data().workoutPlan)
             } else {
                 setWorkoutPlan(null);
             }

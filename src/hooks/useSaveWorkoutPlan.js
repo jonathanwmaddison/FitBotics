@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getFirestore, collection, addDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, setDoc,  getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import useAuth from '../useAuth';
 
@@ -15,9 +15,7 @@ const { user } = useAuth()
 
       if (user) {
         const db = getFirestore()
-        await addDoc(collection(db, 'workoutPlans'), {
-            createdAt: new Date(),
-            createdBy: user.uid,
+        await setDoc(collection(db, 'workoutPlans', user.uid), {
             data: workoutPlan,
           });
 
