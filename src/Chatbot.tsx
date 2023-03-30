@@ -30,7 +30,7 @@ const Chatbot = () => {
     }
   };
 
-    return (
+  return (
     <Box
       component="form"
       onSubmit={handleSubmit}
@@ -74,8 +74,6 @@ const Chatbot = () => {
       )}
     </Box>
   );
-}
+};
 
-export default Chatbot
-
-
+export default Chatbot;
