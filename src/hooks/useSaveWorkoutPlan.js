@@ -15,11 +15,8 @@ const { user } = useAuth()
 
       if (user) {
         const db = getFirestore()
-        await setDoc(collection(db, 'workoutPlans', user.uid), {
-            data: workoutPlan,
-          });
-
-        
+        const userWorkoutPlanRef = doc(db, 'workoutPlans', uid);
+        await setDoc(userWorkoutPlanRef, { workoutPlan });
       } else {
         throw new Error('User not authenticated');
       }
