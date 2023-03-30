@@ -1,14 +1,15 @@
 // OnboardingChat.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useSaveWorkoutPlan } from './hooks/useSaveWorkoutPlan';
+import generateWorkoutPlan from './hooks/generateWorkoutPlan';
+
 function OnboardingChat({ onWorkoutPlanGenerated }) {
   const [userData, setUserData] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [chatMessages, setChatMessages] = useState([]);
 
   const userQueries = ['goals', 'age', 'fitness level'];
-  const { saveWorkoutPlan, saving, error } = useSaveWorkoutPlan();
+  const { saveWorkoutPlan } = useSaveWorkoutPlan();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -31,31 +32,9 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
     setInputValue('');
 
     if (userData.length === 2) {
-      const prompt = `A json object with the properties: 
-    { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "string (number of repetitions and sets- specify if a time quantity)" },
-        ...
-      ],
-      "description": "string (description for the day with tips. vary this description to the specific day. Don't repeat too much.)"
-    },
-    ...
-     ]
-   }
-  
-   The json object should detail a 1 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
-
-      try {
-        const response = await axios.post(
-          'https://us-central1-fitbotics-230d2.cloudfunctions.net/chat',
-          { prompt },
-        );
-        console.log(response);
-        const jsonResponse = JSON.parse(response.data.text);
-        console.log(jsonResponse);
-        onWorkoutPlanGenerated(jsonResponse);
-        saveWorkoutPlan(jsonResponse);
-      } catch (error) {
-        console.error('Error fetching workout plan:', error);
-      }
+      const workoutPlan = await generateWorkoutPlan(userData);
+      onWorkoutPlanGenerated(workoutPlan);
+      saveWorkoutPlan(workoutPlan);
     }
   };
   useEffect(() => {

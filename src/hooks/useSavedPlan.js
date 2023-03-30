@@ -1,12 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  doc,
-} from 'firebase/firestore';
+import { getFirestore, onSnapshot, doc } from 'firebase/firestore';
 import useAuth from '../useAuth';
 
 const useSavedPlan = () => {

@@ -1,19 +1,12 @@
 import { useState } from 'react';
-import {
-  getFirestore,
-  collection,
-  setDoc,
-  getDoc,
-  doc,
-} from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
 import useAuth from '../useAuth';
 
 export const useSaveWorkoutPlan = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
   const { user } = useAuth();
-  const saveWorkoutPlan = async (workoutPlan) => {
+  const saveWorkoutPlan = async (workoutPlan: any) => {
     setSaving(true);
     setError(null);
 
@@ -27,7 +20,7 @@ export const useSaveWorkoutPlan = () => {
       }
     } catch (err) {
       console.log(err);
-      setError(err.message);
+      setError(null);
     } finally {
       setSaving(false);
     }
