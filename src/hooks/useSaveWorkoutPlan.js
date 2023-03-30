@@ -6,7 +6,7 @@ import useAuth from '../useAuth';
 export const useSaveWorkoutPlan = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
-const { user } = useAuth()
+  const { user } = useAuth()
   const saveWorkoutPlan = async (workoutPlan) => {
     setSaving(true);
     setError(null);
@@ -15,7 +15,7 @@ const { user } = useAuth()
 
       if (user) {
         const db = getFirestore()
-        const userWorkoutPlanRef = doc(db, 'workoutPlans', uid);
+        const userWorkoutPlanRef = doc(db, 'workoutPlans', user.uid);
         await setDoc(userWorkoutPlanRef, { workoutPlan });
       } else {
         throw new Error('User not authenticated');
