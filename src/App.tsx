@@ -5,12 +5,24 @@ import WorkoutTable from './WorkoutTable';
 import useAuth from './useAuth';
 import AuthButtons from './AuthButtons';
 import useSavedPlan from './hooks/useSavedPlan';
+export type Exercise = {
+  name: string;
+  reps: number;
+};
+export type Workout = {
+  day: number;
+  exercises: Exercise[];
+  description: string;
+};
+export type WorkoutPlan = {
+  workouts: Workout[];
+};
 
 function App() {
-  const [workoutPlan, setWorkoutPlan] = useState(null);
+  const [workoutPlan, setWorkoutPlan] = useState<null | WorkoutPlan>(null);
   const { workoutPlan: savedPlan } = useSavedPlan();
 
-  const onWorkoutPlanGenerated = (plan) => {
+  const onWorkoutPlanGenerated = (plan: WorkoutPlan) => {
     setWorkoutPlan(plan);
   };
   const { user, signInWithGoogle, signOutUser } = useAuth();

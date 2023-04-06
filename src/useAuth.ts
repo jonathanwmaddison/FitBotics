@@ -13,7 +13,11 @@ import firebase from './firebase';
 const auth = getAuth(firebase);
 const provider = new GoogleAuthProvider();
 
-const useAuth = () => {
+const useAuth = (): {
+  signInWithGoogle: () => void;
+  signOutUser: () => void;
+  user: User | null;
+} => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

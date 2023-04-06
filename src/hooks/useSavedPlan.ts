@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getFirestore, onSnapshot, doc } from 'firebase/firestore';
 import useAuth from '../useAuth';
+import { WorkoutPlan } from '../App';
 
-const useSavedPlan = () => {
-  const [workoutPlan, setWorkoutPlan] = useState(null);
+const useSavedPlan = (): {
+  workoutPlan: WorkoutPlan | null;
+  loading: boolean;
+  error: string | null;
+} => {
+  const [workoutPlan, setWorkoutPlan] = useState<null | WorkoutPlan>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | string>(null);
   const { user } = useAuth();
 
   const getWorkoutPlan = useCallback(() => {
@@ -14,7 +19,7 @@ const useSavedPlan = () => {
     setError(null);
 
     const db = getFirestore();
-    const workoutPlanRef = doc(db, 'workoutPlans', user.uid);
+    const workoutPlanRef = doc(db, 'workoutPlans', user?.uid || '');
 
     const unsubscribe = onSnapshot(
       workoutPlanRef,
