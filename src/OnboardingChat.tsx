@@ -1,21 +1,27 @@
 // OnboardingChat.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import { useSaveWorkoutPlan } from './hooks/useSaveWorkoutPlan';
 import generateWorkoutPlan from './hooks/generateWorkoutPlan';
 
-function OnboardingChat({ onWorkoutPlanGenerated }) {
-  const [userData, setUserData] = useState([]);
+function OnboardingChat({
+  onWorkoutPlanGenerated,
+}: {
+  onWorkoutPlanGenerated: (workoutPlan: any) => void;
+}) {
+  const [userData, setUserData] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState<
+    { type: string; message: string }[]
+  >([]);
 
   const userQueries = ['goals', 'age', 'fitness level'];
   const { saveWorkoutPlan } = useSaveWorkoutPlan();
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     setInputValue(event.target.value);
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       handleSubmit();
     }
@@ -24,10 +30,7 @@ function OnboardingChat({ onWorkoutPlanGenerated }) {
   const handleSubmit = async () => {
     if (inputValue.trim() === '') return;
 
-    setChatMessages((prevChatMessages) => [
-      ...prevChatMessages,
-      { type: 'user', message: inputValue },
-    ]);
+    setChatMessages([...chatMessages, { type: 'user', message: inputValue }]);
     setUserData([...userData, inputValue]);
     setInputValue('');
 
