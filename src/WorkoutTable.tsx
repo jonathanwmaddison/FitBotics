@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
+import { Exercise, WorkoutPlan } from './App';
+type ActiveDays = number[];
 
-function WorkoutTable({ workoutPlan }) {
-  const [activeDays, setActiveDays] = useState({});
+function WorkoutTable({ workoutPlan }: { workoutPlan: WorkoutPlan }) {
+  const [activeDays, setActiveDays] = useState<ActiveDays>([]);
 
-  const toggleDay = (index) => {
+  const toggleDay = (index: number) => {
     setActiveDays((prevActiveDays) => {
-      const newActiveDays = { ...prevActiveDays };
-      if (newActiveDays[index]) {
-        delete newActiveDays[index];
+      let newActiveDays = [...prevActiveDays];
+      if (newActiveDays.includes(index)) {
+        newActiveDays = newActiveDays.filter((day) => day != index);
       } else {
-        newActiveDays[index] = true;
+        newActiveDays = newActiveDays.concat(index);
       }
       return newActiveDays;
     });
   };
 
-  const renderExercises = (exercises) => {
+  const renderExercises = (exercises: Exercise[]) => {
     return (
       <div className="border-t border-gray-200 dark:border-gray-700">
         {exercises.map((exercise, index) => (
@@ -48,7 +50,7 @@ function WorkoutTable({ workoutPlan }) {
           <div className="max-w-xs ">Day {workout.day}</div>
           <div className="max-w-lg ">{workout.description}</div>
         </div>
-        {activeDays[index] && renderExercises(workout.exercises)}
+        {activeDays.includes(index) && renderExercises(workout.exercises)}
       </div>
     ));
   };

@@ -40,7 +40,10 @@ function App() {
           {workoutPlan == null && savedPlan == null && (
             <OnboardingChat onWorkoutPlanGenerated={onWorkoutPlanGenerated} />
           )}
-          <WorkoutTable workoutPlan={workoutPlan || savedPlan} />
+          {workoutPlan != null ||
+            (savedPlan != null && (
+              <WorkoutTable workoutPlan={workoutPlan || savedPlan} />
+            ))}
         </>
       )}
     </div>
