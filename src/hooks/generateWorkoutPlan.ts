@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 async function generateWorkoutPlan(userData: string[]) {
-  const prompt = `A json object with the properties: 
+  const prompt = `A json object with the properties:
     { "workouts": [{"day": "integer (1-7)", "exercises": [{ "name": "string (exercise name)", "reps": "string (number of repetitions and sets- specify if a time quantity)" },
         ...
       ],
@@ -10,15 +10,14 @@ async function generateWorkoutPlan(userData: string[]) {
     ...
      ]
     }
-    
-    The json object should detail a 1 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${inputValue}".`;
+
+    The json object should detail a 1 week workout plan for someone with  1. goals: "${userData[0]}", 2. age: ${userData[1]}, and 3. fitness level: "${userData[2]}".`;
 
   try {
     const response = await axios.post(
       'https://us-central1-fitbotics-230d2.cloudfunctions.net/chat',
       { prompt },
     );
-    console.log(response);
     return JSON.parse(response.data.text);
   } catch (error) {
     console.error('Error fetching workout plan:', error);
