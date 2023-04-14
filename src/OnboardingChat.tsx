@@ -2,11 +2,12 @@
 import React, { useState, useEffect, KeyboardEvent } from 'react';
 import { useSaveWorkoutPlan } from './hooks/useSaveWorkoutPlan';
 import generateWorkoutPlan from './hooks/generateWorkoutPlan';
+import { WorkoutPlan } from './App';
 
 function OnboardingChat({
   onWorkoutPlanGenerated,
 }: {
-  onWorkoutPlanGenerated: (workoutPlan: any) => void;
+  onWorkoutPlanGenerated: (workoutPlan: WorkoutPlan) => void;
 }) {
   const [userData, setUserData] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
