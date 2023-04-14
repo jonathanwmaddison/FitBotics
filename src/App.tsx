@@ -8,6 +8,8 @@ import useSavedPlan from './hooks/useSavedPlan';
 export type Exercise = {
   name: string;
   reps: number;
+  comment: string;
+  rating: number;
 };
 export type Workout = {
   day: number;
